@@ -6,6 +6,7 @@ Project Output:
 Problem: 3 cannibals, 3 missionaries and boat capacity 2
 
 4 solutions exist for this problem 
+
 Send 2 cannibals and 0 missionaries to the second river bank
 Send 1 cannibals and 0 missionaries to the first river bank
 Send 2 cannibals and 0 missionaries to the second river bank
