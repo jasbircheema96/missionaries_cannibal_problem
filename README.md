@@ -45,7 +45,7 @@ Project Output:
 - Send 1 cannibals and 0 missionaries to the first river bank
 - Send 2 cannibals and 0 missionaries to the second river bank
 
-#Solution 4
+# Solution 4
 - Send 1 cannibals and 1 missionaries to the second river bank
 - Send 0 cannibals and 1 missionaries to the first river bank
 - Send 2 cannibals and 0 missionaries to the second river bank
