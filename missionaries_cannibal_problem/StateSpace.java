@@ -14,29 +14,7 @@ public class StateSpace {
 		this.startState = startState;
 		this.stateMap = new boolean[Constants.NUM_MISSIONARIES + 1][Constants.NUM_CANNIBALS
 				+ 1][Constants.NUM_RIVER_BANKS];
-		this.goalStates=new ArrayList<State>();
-	}
-
-	private void addStateToMap(State s) {
-		this.stateMap[s.getM()][s.getC()][s.getBoatStatus()] = true;
-	}
-
-	public void generateStates() {
-		//bfs used to generate states  (and it should be optimal)
-		Queue<State> q=new LinkedList<State>();
-		q.add(startState);
-		while(!q.isEmpty()){
-			State state=q.poll();
-			state.expand();
-			addStateToMap(state);
-			for(State nextState:state.getNextPossibleStates()) {
-				if(!isStateInMap(nextState) && nextState.satisfiesConstraints()) {
-					if(nextState.isGoalState())
-						this.goalStates.add(nextState);
-					q.add(nextState);
-				}	
-			}	
-		}
+		this.goalStates = new ArrayList<State>();
 	}
 	
 	public List<State> getGoalStates() {
@@ -55,19 +33,44 @@ public class StateSpace {
 		return this.stateMap[s.getM()][s.getC()][s.getBoatStatus()];
 	}
 
-	public void print() {
-		printBFS(startState);
+	private void addStateToMap(State s) {
+		this.stateMap[s.getM()][s.getC()][s.getBoatStatus()] = true;
 	}
 
-	public void printAllPaths() {
-		for(State goalState:this.getGoalStates()) {	
-			List<State> path=goalState.getPath();
-			for(int i=1;i<path.size();i++) {
-				State state=path.get(i-1);
-				state.printEvent(path.get(i));
+	public void generateStates() {
+		// bfs used to generate states (and it should be optimal)
+		Queue<State> q = new LinkedList<State>();
+		q.add(startState);
+		while (!q.isEmpty()) {
+			State state = q.poll();
+			state.expand();
+			addStateToMap(state);
+			for (State nextState : state.getNextPossibleStates()) {
+				if (!isStateInMap(nextState) && nextState.satisfiesConstraints()) {
+					if (nextState.isGoalState())
+						this.goalStates.add(nextState);
+					q.add(nextState);
+				}
 			}
-			System.out.println();
 		}
+	}
+
+	public void writeAllPaths() {
+		Writer writer=new Writer();
+		writer.write(this.getGoalStates().size()+" solutions exist for this problem \n");
+		for (State goalState : this.getGoalStates()) {
+			List<State> path = goalState.getPath();
+			for (int i = 1; i < path.size(); i++) {
+				State state = path.get(i - 1);
+				state.writeEvent(path.get(i),writer);
+			}
+			writer.write("\n");
+		}
+		writer.close();
+	}
+
+	public void print() {
+		printBFS(startState);
 	}
 
 	private void printBFS(State startState) {
@@ -86,5 +89,4 @@ public class StateSpace {
 			}
 		}
 	}
-
 }

@@ -6,6 +6,6 @@ public class App {
 		State startState=new State(Constants.NUM_MISSIONARIES,Constants.NUM_CANNIBALS,Constants.FIRST_BANK);
 		StateSpace stateSpace=new StateSpace(startState);
 		stateSpace.generateStates();
-		stateSpace.printAllPaths();
+		stateSpace.writeAllPaths();
 	}
 }
