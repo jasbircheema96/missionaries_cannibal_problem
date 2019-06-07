@@ -2,7 +2,7 @@
 There can be any number of missionaries and cannibals (not just 3) and boat capacity can be any number as well. The project solves the problem to take missionaries and cannibals to the other bank of the river with the help of boat.
 
 
-Problem: 3 cannibals, 3 missionaries and boat capacity 2
+Example Problem: 3 cannibals, 3 missionaries and boat capacity 2
 
 # Project Output:
 - 4 solutions exist for this problem 
